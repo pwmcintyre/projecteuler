@@ -14,7 +14,7 @@ func TestProblem1(t *testing.T) {
 
 	examples := []Example{
 		{Input{10, 3, 5}, 23},
-		{Input{1000, 3, 5}, 23},
+		{Input{1000, 3, 5}, 233168},
 	}
 
 	fmt.Print(examples)
