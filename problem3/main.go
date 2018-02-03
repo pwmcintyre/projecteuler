@@ -5,20 +5,14 @@ package problem3
 
 import (
 	"math"
+
+	"github.com/pwmcintyre/projecteuler/functions"
 )
 
 // Run run
 func Run(input int) int {
 	factors := PrimeFactors(input)
-
-	max := 0
-	for _, e := range factors {
-		if e > max {
-			max = e
-		}
-	}
-
-	return max
+	return functions.MaxPositiveInt(factors)
 }
 
 // PrimeFactors returns sequence of prime factors of a given integer
