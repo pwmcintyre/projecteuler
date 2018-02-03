@@ -25,3 +25,41 @@ func TestGCD(t *testing.T) {
 		}
 	}
 }
+
+func TestIsPalindromic(t *testing.T) {
+
+	examples := []struct {
+		input  int
+		answer bool
+	}{
+		{123, false},
+		{121, true},
+		{10000000000000001, true},
+	}
+
+	for _, ex := range examples {
+		result := IsPalindromic(ex.input)
+		if !reflect.DeepEqual(ex.answer, result) {
+			t.Errorf("\nresult: %+v\nexpected: %d\ninput: %+v", result, ex.answer, ex.input)
+		}
+	}
+}
+
+func TestMaxPositiveInt(t *testing.T) {
+
+	examples := []struct {
+		input  []int
+		answer int
+	}{
+		{[]int{1, 2, 3, 4}, 4},
+		{[]int{4, 1, 2}, 4},
+		{[]int{1}, 1},
+	}
+
+	for _, ex := range examples {
+		result := MaxPositiveInt(ex.input)
+		if !reflect.DeepEqual(ex.answer, result) {
+			t.Errorf("\nresult: %+v\nexpected: %d\ninput: %+v", result, ex.answer, ex.input)
+		}
+	}
+}
