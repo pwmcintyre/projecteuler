@@ -3,10 +3,25 @@ package prime
 import "math"
 
 // prime Length returns a number of prime digits
-// https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+// brute force method
 func Length(length int) []int {
 
-	return []int{}
+	primes := []int{}
+	for i := 2; len(primes) < length; i++ {
+		prime := true
+		for j := i - 1; j > 1; j-- {
+			if i%j != 0 {
+				continue
+			}
+			prime = false
+			break
+		}
+		if prime {
+			primes = append(primes, i)
+		}
+	}
+
+	return primes
 }
 
 // prime Until returns all primes <= than a given integer
