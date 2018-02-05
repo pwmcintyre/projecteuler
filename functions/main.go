@@ -53,7 +53,8 @@ func MaxPositiveInt(input []int) int {
 	return max
 }
 
-// https://stackoverflow.com/questions/171765/what-is-the-best-way-to-get-all-the-divisors-of-a-number
+// Divisors returns a list of divisors of a given number
+// optimised via https://stackoverflow.com/questions/171765/what-is-the-best-way-to-get-all-the-divisors-of-a-number
 func Divisors(input int) []int {
 	divisors := []int{}
 	bigdivisors := []int{}
