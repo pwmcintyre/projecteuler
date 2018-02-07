@@ -73,6 +73,15 @@ func Divisors(input int) []int {
 	return divisors
 }
 
+// ProperDivisors returns numbers less than n which divide evenly into n
+func ProperDivisors(input int) (result []int) {
+	result = Divisors(input)
+	if len(result) > 0 {
+		result = result[:len(result)-1]
+	}
+	return
+}
+
 func DivisorCount(input int) int {
 	count := 0
 	limit := int(math.Sqrt(float64(input)) + 1)
