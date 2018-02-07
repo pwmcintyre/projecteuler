@@ -98,6 +98,37 @@ func DivisorCount(input int) int {
 	return count
 }
 
+// AmicableNumbers returns Amicable Numbers under a given n
+// https://en.wikipedia.org/wiki/Amicable_numbers
+func AmicableNumbers(below int) (answer []int) {
+
+	numbers := []int{}
+	for a := 2; a < below; a++ {
+
+		b := SumOfProperDivisors(a)
+		c := SumOfProperDivisors(b)
+
+		if a != b && a == c {
+			numbers = append(numbers, a)
+		}
+	}
+
+	return numbers
+}
+
+func SumOfProperDivisors(n int) (sum int) {
+	div := ProperDivisors(n)
+	sum = Sum(div)
+	return
+}
+
+func Sum(numbers []int) (sum int) {
+	for _, n := range numbers {
+		sum += n
+	}
+	return
+}
+
 func InArray(val interface{}, array interface{}) (exists bool, index int) {
 	exists = false
 	index = -1

@@ -134,6 +134,46 @@ func TestDivisorCount(t *testing.T) {
 	}
 }
 
+func TestAmicableNumbers(t *testing.T) {
+
+	var examples = []struct {
+		input  int
+		answer []int
+	}{
+		{300, []int{220, 284}},
+		{2000, []int{220, 284, 1184, 1210}},
+	}
+
+	for _, ex := range examples {
+		result := AmicableNumbers(ex.input)
+		if !reflect.DeepEqual(ex.answer, result) {
+			t.Errorf("\nresult: %+v\nexpected: %d\ninput: %+v", result, ex.answer, ex.input)
+		}
+	}
+}
+
+func TestSumOfProperDivisors(t *testing.T) {
+
+	var examples = []struct {
+		input  int
+		answer int
+	}{
+		{25, 6},
+		{6, 6},
+		{220, 284},
+		{284, 220},
+		{1184, 1210},
+		{1210, 1184},
+	}
+
+	for _, ex := range examples {
+		result := SumOfProperDivisors(ex.input)
+		if !reflect.DeepEqual(ex.answer, result) {
+			t.Errorf("\nresult: %+v\nexpected: %d\ninput: %+v", result, ex.answer, ex.input)
+		}
+	}
+}
+
 func TestInArray(t *testing.T) {
 
 	examples := []struct {
