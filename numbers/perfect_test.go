@@ -11,8 +11,8 @@ func TestPerfectNumbers(t *testing.T) {
 		input  int
 		answer []int
 	}{
-		{300, []int{220, 284}},
-		{2000, []int{220, 284, 1184, 1210}},
+		{10, []int{6}},
+		{30, []int{6, 28}},
 	}
 
 	for _, ex := range examples {
@@ -29,9 +29,9 @@ func TestIsPerfectNumber(t *testing.T) {
 		input  int
 		answer bool
 	}{
-		{200, false},
-		{220, true},
-		{1210, true},
+		{5, false},
+		{6, true},
+		{28, true},
 	}
 
 	for _, ex := range examples {

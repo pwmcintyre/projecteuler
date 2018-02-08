@@ -24,7 +24,6 @@ func PerfectNumbers(below int) (answer []int) {
 func IsPerfectNumber(a int) (answer bool) {
 
 	b := arrays.Sum(divisors.ProperDivisors(a))
-	c := arrays.Sum(divisors.ProperDivisors(b))
 
-	return a != b && a == c
+	return a == b
 }
