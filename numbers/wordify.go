@@ -1,4 +1,3 @@
-// package numbers
 package numbers
 
 import (

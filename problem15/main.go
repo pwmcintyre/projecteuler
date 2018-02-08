@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/pwmcintyre/projecteuler/factorial"
+	"github.com/pwmcintyre/projecteuler/functions"
 )
 
 // Run run
@@ -20,8 +20,8 @@ func Run(input uint) (answer *big.Int) {
 	n2.Set(n)
 
 	n2 = n2.Mul(n2, big.NewInt(2))      // 2n
-	fact1 := factorial.BigFactorial(n2) // (2n)!
-	fact2 := factorial.BigFactorial(n)  // n!
+	fact1 := functions.BigFactorial(n2) // (2n)!
+	fact2 := functions.BigFactorial(n)  // n!
 	fact2 = fact2.Mul(fact2, fact2)     // n!^2
 	answer = fact1.Div(fact1, fact2)    // (2n)! / n!^2
 

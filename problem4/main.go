@@ -8,7 +8,7 @@ import (
 	"math"
 
 	"github.com/pwmcintyre/projecteuler/arrays"
-	"github.com/pwmcintyre/projecteuler/functions"
+	"github.com/pwmcintyre/projecteuler/numbers"
 )
 
 // Run run
@@ -27,7 +27,7 @@ func PalindromicNumbers(digits int) ([]int, error) {
 	for a := largest; a > smallest; a-- {
 		for b := a - 1; b > smallest; b-- {
 			result := a * b
-			if functions.IsPalindromic(result) {
+			if numbers.IsPalindromic(result) {
 				results = append(results, result)
 			}
 		}

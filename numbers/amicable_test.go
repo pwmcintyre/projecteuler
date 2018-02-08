@@ -1,4 +1,4 @@
-package functions
+package numbers
 
 import (
 	"reflect"
@@ -17,6 +17,25 @@ func TestAmicableNumbers(t *testing.T) {
 
 	for _, ex := range examples {
 		result := AmicableNumbers(ex.input)
+		if !reflect.DeepEqual(ex.answer, result) {
+			t.Errorf("\nresult: %+v\nexpected: %d\ninput: %+v", result, ex.answer, ex.input)
+		}
+	}
+}
+
+func TestIsAmicableNumber(t *testing.T) {
+
+	var examples = []struct {
+		input  int
+		answer bool
+	}{
+		{200, false},
+		{220, true},
+		{1210, true},
+	}
+
+	for _, ex := range examples {
+		result := IsAmicableNumber(ex.input)
 		if !reflect.DeepEqual(ex.answer, result) {
 			t.Errorf("\nresult: %+v\nexpected: %d\ninput: %+v", result, ex.answer, ex.input)
 		}

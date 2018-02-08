@@ -17,14 +17,14 @@ import (
 	"math/big"
 	"strconv"
 
-	"github.com/pwmcintyre/projecteuler/factorial"
+	"github.com/pwmcintyre/projecteuler/functions"
 )
 
 // Run run
 func Run(n int) (answer int) {
 
 	// get factorial in string format
-	str := factorial.BigFactorial(big.NewInt(int64(n))).String()
+	str := functions.BigFactorial(big.NewInt(int64(n))).String()
 
 	// add the digits
 	for _, e := range str {

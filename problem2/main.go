@@ -26,3 +26,7 @@ func Run(max int) int {
 
 	return acc
 }
+
+func main() {
+
+}

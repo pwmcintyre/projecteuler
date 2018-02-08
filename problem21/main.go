@@ -16,13 +16,13 @@ import (
 	"fmt"
 
 	"github.com/pwmcintyre/projecteuler/arrays"
-	"github.com/pwmcintyre/projecteuler/functions"
+	"github.com/pwmcintyre/projecteuler/numbers"
 )
 
 // Run run
 func Run(below int) (answer int) {
 
-	numbers := functions.AmicableNumbers(below)
+	numbers := numbers.AmicableNumbers(below)
 	answer = arrays.Sum(numbers)
 
 	return
