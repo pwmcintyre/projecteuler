@@ -6,13 +6,13 @@ package main
 import (
 	"math"
 
-	"github.com/pwmcintyre/projecteuler/functions"
+	"github.com/pwmcintyre/projecteuler/arrays"
 )
 
 // Run run
 func Run(input int) int {
 	factors := PrimeFactors(input)
-	return functions.MaxPositiveInt(factors)
+	return arrays.MaxPositiveInt(factors)
 }
 
 // PrimeFactors returns sequence of prime factors of a given integer
@@ -38,4 +38,8 @@ func PrimeFactors(n int) []int {
 	}
 
 	return save
+}
+
+func main() {
+
 }

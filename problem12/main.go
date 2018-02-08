@@ -20,7 +20,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/pwmcintyre/projecteuler/functions"
+	"github.com/pwmcintyre/projecteuler/divisors"
 )
 
 // Run run
@@ -28,7 +28,7 @@ import (
 func Run(target int) (layer int, number int) {
 	for layer = 1; ; layer++ {
 		number += layer
-		divisors := functions.Divisors(number)
+		divisors := divisors.Divisors(number)
 		if len(divisors) >= target {
 			return
 		}

@@ -7,13 +7,14 @@ import (
 	"errors"
 	"math"
 
+	"github.com/pwmcintyre/projecteuler/arrays"
 	"github.com/pwmcintyre/projecteuler/functions"
 )
 
 // Run run
 func Run(digits int) (int, error) {
 	results, err := PalindromicNumbers(digits)
-	return functions.MaxPositiveInt(results), err
+	return arrays.MaxPositiveInt(results), err
 }
 
 func PalindromicNumbers(digits int) ([]int, error) {
@@ -37,4 +38,8 @@ func PalindromicNumbers(digits int) ([]int, error) {
 	}
 
 	return results, nil
+}
+
+func main() {
+
 }

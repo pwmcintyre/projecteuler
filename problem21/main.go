@@ -15,6 +15,7 @@ package main
 import (
 	"fmt"
 
+	"github.com/pwmcintyre/projecteuler/arrays"
 	"github.com/pwmcintyre/projecteuler/functions"
 )
 
@@ -22,7 +23,7 @@ import (
 func Run(below int) (answer int) {
 
 	numbers := functions.AmicableNumbers(below)
-	answer = functions.Sum(numbers)
+	answer = arrays.Sum(numbers)
 
 	return
 }
