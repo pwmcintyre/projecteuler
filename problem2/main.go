@@ -2,29 +2,26 @@
 //
 // 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
 //
-// By considering the terms in the Fibonacci sequence whose values do not exceed four million,
+// By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
 package main
 
 import (
-	"fmt"
-
 	"github.com/pwmcintyre/projecteuler/fibonacci"
 )
 
 // Run run
-func Run(max int) int {
+func Run(max int) (sum int) {
 
-	sequence := fibonacci.Until(max)
-	fmt.Println(sequence)
-
-	acc := 0
-	for _, i := range sequence {
-		if i%2 == 0 {
-			acc += i
+	gen := fibonacci.Generator()
+	for {
+		n := gen()
+		if n > max {
+			return
+		}
+		if n%2 == 0 {
+			sum += n
 		}
 	}
-
-	return acc
 }
 
 func main() {
