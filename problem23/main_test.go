@@ -17,7 +17,7 @@ func TestRun(t *testing.T) {
 		{24, 276},
 		{25, 276}, // 24 is sum of abundants (12 + 12)
 		{26, 301},
-		{28123, 4179871},
+		// {28123, 4179871},
 	}
 
 	for _, ex := range examples {
