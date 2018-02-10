@@ -47,5 +47,33 @@ func TestUntil(t *testing.T) {
 		if !reflect.DeepEqual(ex.answer, result) {
 			t.Errorf("\nresult: %+v\nexpected: %d\ninput: %+v", result, ex.answer, ex.input)
 		}
+		t.Log(result)
 	}
 }
+
+func TestGenerator(t *testing.T) {
+
+	gen := Generator()
+
+	for i, ex := range testPrimes {
+		result := gen()
+		if !reflect.DeepEqual(ex, result) {
+			t.Errorf("\nresult: %+v\nexpected: %d\nindex: %+v", result, ex, i)
+		}
+		t.Log(result)
+	}
+}
+
+func benchmarkGenerator(len int, b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		gen := Generator()
+		for i := 0; i < len; i++ {
+			gen()
+		}
+	}
+}
+
+func BenchmarkGenerator1(b *testing.B)    { benchmarkGenerator(1, b) }
+func BenchmarkGenerator10(b *testing.B)   { benchmarkGenerator(10, b) }
+func BenchmarkGenerator100(b *testing.B)  { benchmarkGenerator(100, b) }
+func BenchmarkGenerator1000(b *testing.B) { benchmarkGenerator(1000, b) }

@@ -5,6 +5,10 @@ import "math"
 // cached primes
 var primes = []int{2, 3, 5, 7, 11, 13}
 
+func purgeCache() {
+	primes = []int{}
+}
+
 // prime Length returns a number of prime digits
 // brute force method
 func Length(length int) []int {
@@ -27,8 +31,13 @@ func Length(length int) []int {
 }
 
 // prime Until returns all primes <= than a given integer
-// https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 func Until(until int) []int {
+	return SieveOfEratosthenes(until)
+}
+
+// prime Until returns all primes <= than a given integer
+// https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+func SieveOfEratosthenes(until int) []int {
 
 	if until < 2 {
 		return []int{}
@@ -69,4 +78,35 @@ func Until(until int) []int {
 	}
 
 	return primes
+}
+
+// Generator returns a generator which returns the next prime in sequence
+// (brute force method)
+func Generator() func() int {
+
+	p := 1
+
+	return func() int {
+
+		for {
+
+			p++
+
+			// test all integers below p
+			// end := int(math.Sqrt(float64(p)) + 0.5)
+			end := p - 1
+			for j := end; j > 0; j-- {
+				if p%j == 0 {
+
+					if j == 1 {
+						// evenly divisable by 1, prime!
+						return p
+					}
+
+					// evenly divisable by not 1, not prime!
+					break
+				}
+			}
+		}
+	}
 }
