@@ -29,6 +29,14 @@ func TestLength(t *testing.T) {
 	}
 }
 
+func benchmarkLength(len int, b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		Length(len)
+	}
+}
+func BenchmarkLength100(b *testing.B)  { benchmarkLength(100, b) }
+func BenchmarkLength1000(b *testing.B) { benchmarkLength(1000, b) }
+
 func TestUntil(t *testing.T) {
 
 	examples := []struct {

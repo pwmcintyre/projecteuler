@@ -15,7 +15,8 @@ func Length(length int) []int {
 
 	for i := primes[len(primes)-1] + 1; len(primes) < length; i++ {
 		prime := true
-		for j := i - 1; j > 1; j-- {
+		end := int(math.Sqrt(float64(i)) + 0.5)
+		for j := end; j > 1; j-- {
 			if i%j != 0 {
 				continue
 			}
@@ -93,8 +94,7 @@ func Generator() func() int {
 			p++
 
 			// test all integers below p
-			// end := int(math.Sqrt(float64(p)) + 0.5)
-			end := p - 1
+			end := int(math.Sqrt(float64(p)) + 0.5)
 			for j := end; j > 0; j-- {
 				if p%j == 0 {
 
