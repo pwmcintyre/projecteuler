@@ -1,3 +1,6 @@
+// Package fibonacci is a utility to fetch permutations of the fibonacci sequence.
+// More info: https://en.wikipedia.org/wiki/Fibonacci_number
+// Correctness verified against https://www.bigprimes.net/archive/fibonacci/10000/
 package fibonacci
 
 import (
@@ -5,32 +8,30 @@ import (
 	"math/big"
 )
 
-// Fib returns the next permutation of the fibonacci sequence
+// Fib returns a function which returns the next permutation of the fibonacci sequence.
+// It will hit an int overflow after 92 permutations.
 func Fib() func() (int, error) {
 
 	n1, n2 := 0, 1
 
-	return func() (n int, e error) {
+	return func() (int, error) {
 		n1, n2 = n2, n1+n2
-		n = n1
 		if n1 < 0 {
-			e = errors.New("overflow, use Bigfib")
-		} else {
-			n = n1
+			return 0, errors.New("overflow, use Bigfib")
 		}
-		return
+		return n1, nil
 	}
 }
 
-// BigFib returns the next permutation of the fibonacci sequence
+// BigFib returns a function which returns the next permutation of the fibonacci sequence.
+// Uses Big Int, so could go forever.
 func BigFib() func() *big.Int {
 
 	n1 := big.NewInt(0)
 	n2 := big.NewInt(1)
 
-	return func() (n *big.Int) {
+	return func() *big.Int {
 		n1, n2 = n2, n1.Add(n1, n2)
-		n = n1
-		return
+		return n1
 	}
 }
