@@ -12,9 +12,9 @@ import (
 // Run run
 func Run(max int) (sum int) {
 
-	gen := fibonacci.Generator()
+	gen := fibonacci.Fib()
 	for {
-		n := gen()
+		n, _ := gen()
 		if n > max {
 			return
 		}

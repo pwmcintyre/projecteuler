@@ -43,7 +43,7 @@ func Run(digits int) (answer int) {
 	max := big.NewInt(0)
 	max.SetString(str, 10)
 
-	next := fibonacci.BigGenerator()
+	next := fibonacci.BigFib()
 	n := big.NewInt(0)
 
 	for answer = 0; n.Cmp(max) < 0; answer++ {

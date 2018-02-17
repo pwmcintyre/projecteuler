@@ -12,9 +12,9 @@ func TestRun(t *testing.T) {
 		prec   int
 		answer int
 	}{
-		// {2, 2, 0},
-		// {10, 20, 7},
-		{25, 100, 7},
+		{2, 2, 0},
+		{10, 20, 7},
+		{25, 100, 23},
 	}
 
 	for _, ex := range examples {

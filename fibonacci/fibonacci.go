@@ -1,42 +1,36 @@
 package fibonacci
 
-import "math/big"
+import (
+	"errors"
+	"math/big"
+)
 
-// Generator returns the next permutation of the fibonacci sequence
-func Generator() func() int {
+// Fib returns the next permutation of the fibonacci sequence
+func Fib() func() (int, error) {
 
-	n1 := int(0)
-	n2 := int(0)
+	n1, n2 := 0, 1
 
-	return func() (n int) {
-		if n2 == 0 {
-			n = 1
+	return func() (n int, e error) {
+		n1, n2 = n2, n1+n2
+		n = n1
+		if n1 < 0 {
+			e = errors.New("overflow, use Bigfib")
 		} else {
-			n = n1 + n2
+			n = n1
 		}
-		n1 = n2
-		n2 = n
 		return
 	}
 }
 
-// BigGenerator returns the next permutation of the fibonacci sequence
-func BigGenerator() func() *big.Int {
+// BigFib returns the next permutation of the fibonacci sequence
+func BigFib() func() *big.Int {
 
 	n1 := big.NewInt(0)
-	n2 := big.NewInt(0)
-
-	first := true
+	n2 := big.NewInt(1)
 
 	return func() (n *big.Int) {
-		if first {
-			n = big.NewInt(1)
-			first = false
-		} else {
-			n = n1.Add(n1, n2)
-		}
-		n1 = n2
-		n2 = n
+		n1, n2 = n2, n1.Add(n1, n2)
+		n = n1
 		return
 	}
 }
