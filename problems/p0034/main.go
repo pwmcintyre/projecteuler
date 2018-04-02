@@ -64,6 +64,6 @@ func IsSumOfFactorials(input int) bool {
 }
 
 func main() {
-	// warning: this is a big number, prepare to wait!
-	fmt.Println(Run(1<<63 - 1))
+	// fmt.Println(Run(1<<63 - 1)) // too big :(
+	fmt.Println(Run(100000))
 }
