@@ -23,7 +23,7 @@ func TestRun(t *testing.T) {
 	for _, ex := range examples {
 		result := Run(ex.input, ex.index)
 		if !reflect.DeepEqual(ex.answer, result) {
-			t.Errorf("\nresult: %+v\nexpected: %d\ninput: %+v", result, ex.answer, ex.input)
+			t.Errorf("\nresult: %+v\nexpected: %v\ninput: %+v", result, ex.answer, ex.input)
 		}
 	}
 }
@@ -50,7 +50,7 @@ func TestNthPermutationOfOrderedArrangement(t *testing.T) {
 	for _, ex := range examples {
 		result := NthPermutationOfOrderedArrangement(ex.input, ex.index)
 		if !reflect.DeepEqual(ex.answer, result) {
-			t.Errorf("\nresult: %+v\nexpected: %d\ninput: %+v", result, ex.answer, ex.input)
+			t.Errorf("\nresult: %+v\nexpected: %v\ninput: %+v", result, ex.answer, ex.input)
 		}
 	}
 }

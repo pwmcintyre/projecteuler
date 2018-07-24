@@ -37,7 +37,7 @@ func TestIsPerfectNumber(t *testing.T) {
 	for _, ex := range examples {
 		result := IsPerfectNumber(ex.input)
 		if !reflect.DeepEqual(ex.answer, result) {
-			t.Errorf("\nresult: %+v\nexpected: %d\ninput: %+v", result, ex.answer, ex.input)
+			t.Errorf("\nresult: %+v\nexpected: %v\ninput: %+v", result, ex.answer, ex.input)
 		}
 	}
 }
