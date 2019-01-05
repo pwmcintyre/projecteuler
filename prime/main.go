@@ -1,6 +1,8 @@
 package prime
 
-import "math"
+import (
+	"math"
+)
 
 // cached primes
 var primes = []int{2, 3, 5, 7, 11, 13}
@@ -109,4 +111,35 @@ func Generator() func() int {
 			}
 		}
 	}
+}
+
+func IsPrime(n int) bool {
+
+	// check cache
+	if primes[len(primes)-1] > n {
+		for _, v := range primes {
+			if v == n {
+				return true
+			}
+		}
+		return false
+	}
+
+	// test all integers below n
+	end := int(math.Sqrt(float64(n)) + 0.5)
+	for j := end; j > 0; j-- {
+		if n%j == 0 {
+
+			if j == 1 {
+				// evenly divisable by 1, prime!
+				return true
+			}
+
+			// evenly divisable by not 1, not prime!
+			break
+		}
+	}
+
+	return false
+
 }

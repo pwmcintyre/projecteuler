@@ -85,3 +85,26 @@ func BenchmarkGenerator1(b *testing.B)    { benchmarkGenerator(1, b) }
 func BenchmarkGenerator10(b *testing.B)   { benchmarkGenerator(10, b) }
 func BenchmarkGenerator100(b *testing.B)  { benchmarkGenerator(100, b) }
 func BenchmarkGenerator1000(b *testing.B) { benchmarkGenerator(1000, b) }
+
+func TestIsPrime(t *testing.T) {
+
+	examples := []struct {
+		input  int
+		answer bool
+	}{
+		{3, true},
+		{4, false},
+		{5, true},
+		{6, false},
+		{199, true},
+		{1000, false},
+	}
+
+	for _, ex := range examples {
+		result := IsPrime(ex.input)
+		if !reflect.DeepEqual(ex.answer, result) {
+			t.Errorf("\nresult: %+v\nexpected: %v\ninput: %+v", result, ex.answer, ex.input)
+		}
+		t.Log(result)
+	}
+}
