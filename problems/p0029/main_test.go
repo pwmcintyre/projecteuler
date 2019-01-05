@@ -12,7 +12,7 @@ func TestRun(t *testing.T) {
 		answer answer
 	}{
 		{input{2, 5, 2, 5}, 15},
-		// {input{2, 100, 2, 100}, 997}, // not 997
+		{input{2, 100, 2, 100}, 9183},
 	}
 
 	for _, ex := range examples {

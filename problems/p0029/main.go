@@ -19,8 +19,7 @@ package main
 
 import (
 	"fmt"
-	"math"
-	"sort"
+	"math/big"
 )
 
 type input = struct{ mina, maxa, minb, maxb int }
@@ -28,32 +27,38 @@ type answer = int
 
 // Run run
 func Run(in input) answer {
-	fmt.Printf("%v ≤ a ≤ %v and %v ≤ b ≤ %v\n", in.mina, in.maxa, in.minb, in.maxb)
+
 	values := getValues(in.mina, in.maxa, in.minb, in.maxb)
 	answer := len(values)
-	fmt.Println(answer)
-	return len(values)
+
+	return answer
+
 }
 
-func getValues(mina, maxa, minb, maxb int) []int {
+func getValues(mina, maxa, minb, maxb int) []string {
 
 	// record all unique values
-	valueMap := make(map[int]bool)
+	valueMap := make(map[string]big.Int)
 	for a := mina; a <= maxa; a++ {
 		for b := minb; b <= maxb; b++ {
-			value := int(math.Pow(float64(a), float64(b)))
-			valueMap[value] = true
+
+			biga := big.NewInt(int64(a))
+			bigb := big.NewInt(int64(b))
+
+			value := biga.Exp(biga, bigb, nil)
+			str := value.String()
+
+			valueMap[str] = *value
+
 		}
 	}
 
-	// convert to list (don't really need this for the problem... but is nice to look at)
-	values := make([]int, 0, len(valueMap))
+	// convert to list
+	// we don't really need this for the problem... but is nice to look at :)
+	values := make([]string, 0, len(valueMap))
 	for key := range valueMap {
 		values = append(values, key)
 	}
-
-	sort.Ints(values)
-	fmt.Println(values)
 
 	return values
 
