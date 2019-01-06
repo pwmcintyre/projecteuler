@@ -59,6 +59,33 @@ func TestUntil(t *testing.T) {
 	}
 }
 
+func TestSieveOfEratosthenes(t *testing.T) {
+
+	examples := []struct {
+		input  int
+		answer []int
+	}{
+		{1, testPrimes[0:0]},
+		{2, testPrimes[0:1]},
+		{10, testPrimes[0:4]},
+		{20, testPrimes[0:8]},
+		{200, testPrimes},
+	}
+
+	for _, ex := range examples {
+		result := SieveOfEratosthenes(ex.input)
+		if !reflect.DeepEqual(ex.answer, result) {
+			t.Errorf("\nresult: %+v\nexpected: %d\ninput: %+v", result, ex.answer, ex.input)
+		}
+	}
+}
+
+func BenchmarkSieveOfEratosthenes(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		SieveOfEratosthenes(n)
+	}
+}
+
 func TestGenerator(t *testing.T) {
 
 	gen := Generator()
@@ -106,5 +133,14 @@ func TestIsPrime(t *testing.T) {
 			t.Errorf("\nresult: %+v\nexpected: %v\ninput: %+v", result, ex.answer, ex.input)
 		}
 		t.Log(result)
+	}
+}
+
+func BenchmarkIsPrime(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		purgeCache()
+		for i := 0; i < len(testPrimes); i++ {
+			IsPrime(i)
+		}
 	}
 }
