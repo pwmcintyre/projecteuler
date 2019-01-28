@@ -25,6 +25,8 @@ import (
 	"math"
 
 	"github.com/pwmcintyre/projecteuler/prime"
+
+	"github.com/sirupsen/logrus"
 )
 
 type input = struct{ a, b int }
@@ -33,20 +35,49 @@ type answer = int
 // Run run
 func Run(in input) answer {
 
-	return 0
+	// logger := logrus.StandardLogger()
+
+	// pre-compute primes cache for performance
+	prime.SieveOfEratosthenes(quadratic(in.a, in.b, 10000))
+
+	//
+	// var bestInput input
+	var bestResult int
+
+	maxa := int(math.Abs(float64(in.a)))
+	maxb := int(math.Abs(float64(in.b)))
+
+	for a := -maxa; a <= maxa; a++ {
+		for b := -maxb; b <= maxb; b++ {
+
+			v := ConsecutivePrimes(a, b)
+
+			// logger.WithField("input", input{a, b}).WithField("result", v).Debug("result")
+
+			if v > bestResult {
+				bestResult = v
+				// bestInput = input{a, b}
+			}
+		}
+	}
+
+	// logger.WithField("input", bestInput).WithField("result", bestResult).Info("best")
+
+	return bestResult
 
 }
 
 // n^2+an+b
-func ConsecutivePrimes(in input) int {
+func ConsecutivePrimes(a, b int) int {
 
 	consecutivePrimes := 0
 	for n := 0; ; n++ {
 
-		v := quadratic(in.a, in.b, n)
+		v := quadratic(a, b, n)
 
 		// check if v is prime
-		if prime.IsPrime(v) {
+		isPrime := prime.IsPrime(v)
+		if isPrime {
 			consecutivePrimes++
 			continue
 		}
@@ -65,5 +96,9 @@ func quadratic(a, b, n int) int {
 }
 
 func main() {
-	fmt.Println(Run(input{1, 41}))
+	logrus.StandardLogger().SetLevel(logrus.DebugLevel)
+	// fmt.Println(Run(input{1, 41}))
+	// fmt.Println(Run(input{-79, 1601}))
+	// fmt.Println(Run(input{1000, 1000}))
+	fmt.Println(GoRun(input{1000, 1000}, 4))
 }
