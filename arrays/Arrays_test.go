@@ -41,3 +41,21 @@ func TestInArray(t *testing.T) {
 		}
 	}
 }
+
+func TestUniqueInt(t *testing.T) {
+
+	examples := []struct {
+		input  []int
+		output []int
+	}{
+		{[]int{1, 2, 3, 4}, []int{1, 2, 3, 4}},
+		{[]int{1, 1, 1, 4}, []int{1, 4}},
+	}
+
+	for _, ex := range examples {
+		result := UniqueInt(ex.input)
+		if !reflect.DeepEqual(ex.output, result) {
+			t.Errorf("\nresult: %+v\nexpected: %d\ninput: %+v", result, ex.output, ex.input)
+		}
+	}
+}
