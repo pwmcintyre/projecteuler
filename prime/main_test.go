@@ -55,7 +55,6 @@ func TestUntil(t *testing.T) {
 		if !reflect.DeepEqual(ex.answer, result) {
 			t.Errorf("\nresult: %+v\nexpected: %d\ninput: %+v", result, ex.answer, ex.input)
 		}
-		t.Log(result)
 	}
 }
 
@@ -95,7 +94,6 @@ func TestGenerator(t *testing.T) {
 		if !reflect.DeepEqual(ex, result) {
 			t.Errorf("\nresult: %+v\nexpected: %d\nindex: %+v", result, ex, i)
 		}
-		t.Log(result)
 	}
 }
 
@@ -132,7 +130,6 @@ func TestIsPrime(t *testing.T) {
 		if !reflect.DeepEqual(ex.answer, result) {
 			t.Errorf("\nresult: %+v\nexpected: %v\ninput: %+v", result, ex.answer, ex.input)
 		}
-		t.Log(result)
 	}
 }
 
@@ -141,6 +138,29 @@ func BenchmarkIsPrime(b *testing.B) {
 		purgeCache()
 		for i := 0; i < len(testPrimes); i++ {
 			IsPrime(i)
+		}
+	}
+}
+
+func TestPrimeFactors(t *testing.T) {
+
+	var examples = []struct {
+		input   int
+		factors []int
+	}{
+		{100, []int{2, 2, 5, 5}},
+		{144, []int{2, 2, 2, 2, 3, 3}},
+		{315, []int{3, 3, 5, 7}},
+		{360, []int{2, 2, 2, 3, 3, 5}},
+		{8051, []int{83, 97}},
+		{13195, []int{5, 7, 13, 29}},
+		{600851475143, []int{71, 839, 1471, 6857}},
+	}
+
+	for _, ex := range examples {
+		result := PrimeFactors(ex.input)
+		if !reflect.DeepEqual(ex.factors, result) {
+			t.Errorf("\nresult: %+v\nexpected: %d\ninput: %+v", result, ex.factors, ex.input)
 		}
 	}
 }

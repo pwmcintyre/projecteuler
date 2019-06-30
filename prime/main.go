@@ -154,3 +154,28 @@ func IsPrime(n int) bool {
 	return false
 
 }
+
+// PrimeFactors returns sequence of prime factors of a given integer
+// https://en.wikipedia.org/wiki/Integer_factorization
+// https://www.geeksforgeeks.org/print-all-prime-factors-of-a-given-number/
+func PrimeFactors(n int) []int {
+
+	save := []int{}
+	for n%2 == 0 {
+		save = append(save, 2)
+		n /= 2
+	}
+
+	for i := 3; float64(i) <= math.Sqrt(float64(n)); i += 2 {
+		for n%i == 0 {
+			save = append(save, i)
+			n /= i
+		}
+	}
+
+	if n > 2 {
+		save = append(save, n)
+	}
+
+	return save
+}
