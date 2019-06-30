@@ -39,7 +39,7 @@ func Run(below int) (answer int) {
 			answer = i
 		}
 
-		fmt.Printf("i: %d cycle: %d max: %d maxi: %d\n", i, len(cycle), max, answer)
+		// fmt.Printf("i: %d cycle: %d max: %d maxi: %d\n", i, len(cycle), max, answer)
 	}
 
 	return

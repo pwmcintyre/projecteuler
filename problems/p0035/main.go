@@ -24,7 +24,7 @@ func Run(below int) (answer int) {
 
 	for n := 1; n < below; n++ {
 		if IsCircularPrime(n) {
-			fmt.Println(n)
+			// fmt.Println(n)
 			answer++
 		}
 	}
